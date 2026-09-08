@@ -284,5 +284,27 @@
 @media (max-width: 640px) {
   .packages-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .card-actions {
+    width: 100%;
+  }
+
+  .card-actions button {
+    flex: 1;
+    justify-content: center;
   }
 }

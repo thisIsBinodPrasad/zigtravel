@@ -226,4 +226,24 @@
   .hero-section {
     padding: 2.5rem 0;
   }
+
+  .hero-search-card {
+    padding: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .highlight-discount {
+    font-size: 1.4rem;
+  }
+
+  .trust-badge {
+    padding: 0.35rem 0.75rem;
+  }
+
+  .badge-text {
+    font-size: 0.75rem;
+  }
 }

@@ -226,15 +226,16 @@
   .nav-select {
     width: 100%;
   }
+}
 
-  .mobile-cta-wrapper {
-    display: block;
-    width: 100%;
-    margin-top: 0.5rem;
+@media (max-width: 580px) {
+  .nav-actions .btn-primary {
+    display: none;
   }
 
-  .mobile-cta-wrapper button {
-    width: 100%;
-    justify-content: center;
+  .top-announcement-bar {
+    font-size: 0.72rem;
+    text-align: center;
   }
 }
+

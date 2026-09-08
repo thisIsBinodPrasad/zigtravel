@@ -217,5 +217,43 @@
 @media (max-width: 900px) {
   .calc-main-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .estimator-card {
+    position: relative;
+    top: 0;
+    padding: 1.5rem;
+  }
+
+  .dest-calc-selector {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .calc-pill {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .slider-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .custom-range {
+    width: 100%;
+  }
+
+  .tier-buttons {
+    flex-direction: column;
+  }
+
+  .callout-price {
+    font-size: 1.8rem;
   }
 }

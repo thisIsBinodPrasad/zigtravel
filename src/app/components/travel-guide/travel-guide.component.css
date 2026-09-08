@@ -219,5 +219,33 @@
 @media (max-width: 768px) {
   .flights-grid, .visa-steps-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .sub-nav-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .sub-nav-tabs button {
+    white-space: nowrap;
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .guide-dest-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .guide-dest-btn {
+    flex: 0 0 auto;
+  }
+
+  .guide-content-box {
+    padding: 1.25rem;
   }
 }

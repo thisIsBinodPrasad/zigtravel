@@ -59,6 +59,12 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+@media (max-width: 480px) {
+  html {
+    font-size: 14.5px;
+  }
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-light);
