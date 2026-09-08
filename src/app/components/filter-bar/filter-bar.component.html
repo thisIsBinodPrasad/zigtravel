@@ -1,0 +1,56 @@
+<div class="filter-bar-container container" id="packages-section">
+  <div class="filter-box glass-card">
+    <div class="filter-top-row">
+      <div class="search-input-wrapper">
+        <i class="ri-search-line search-icon"></i>
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery" 
+          (input)="onSearchChange()" 
+          placeholder="Search resorts, packages, or activities..." 
+          class="search-field" />
+      </div>
+
+      <div class="filter-dropdowns">
+        <div class="select-group">
+          <label><i class="ri-map-pin-2-line"></i> From:</label>
+          <select [(ngModel)]="selectedCity" (change)="onCitySelect()" class="filter-select">
+            <option value="all">Any Departure City</option>
+            <option *ngFor="let c of cities.slice(1)" [value]="c">From {{ c }}</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label><i class="ri-time-line"></i> Duration:</label>
+          <select [ngModel]="selectedDuration" (ngModelChange)="onDurationSelect($event)" class="filter-select">
+            <option value="all">Any Duration</option>
+            <option value="3-4">3 - 4 Days</option>
+            <option value="5-7">5 - 7 Days</option>
+            <option value="8+">8+ Days</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label><i class="ri-sort-asc"></i> Sort:</label>
+          <select [(ngModel)]="selectedSort" (change)="onSortSelect()" class="filter-select highlight-select">
+            <option value="popular">Most Popular</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated ★</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Pills Row -->
+    <div class="category-pills">
+      <button 
+        *ngFor="let cat of categories" 
+        class="cat-btn" 
+        [class.active]="selectedCategory === cat.id" 
+        (click)="onCategorySelect(cat.id)">
+        {{ cat.label }}
+      </button>
+    </div>
+  </div>
+</div>

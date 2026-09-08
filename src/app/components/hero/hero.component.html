@@ -1,0 +1,89 @@
+<section class="hero-section" [style.backgroundImage]="'url(' + (activeDestination?.heroImage || 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1800&q=80') + ')'">
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-text-block fade-in">
+      <div class="trust-badge">
+        <span class="rating-stars">★★★★★</span>
+        <span class="badge-text">4.8 / 5 Rating from 14,200+ Verified Travelers</span>
+      </div>
+
+      <h1 class="hero-title" *ngIf="activeDestination">
+        Explore {{ activeDestination.name }} Tour Packages
+        <span class="highlight-discount">Upto 40% OFF</span>
+      </h1>
+
+      <h1 class="hero-title" *ngIf="!activeDestination">
+        Discover Extraordinary Global Tour Packages
+        <span class="highlight-discount">Save Upto 40% Today</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        {{ activeDestination ? activeDestination.tagline : 'Curated luxury trips to Maldives, Bali, Dubai, Europe, Thailand & India with best price guarantee, free visa guidance & 24/7 on-trip assistance.' }}
+      </p>
+
+      <div class="hero-usps">
+        <div class="usp-item"><i class="ri-shield-star-line"></i> Free Visa Assistance</div>
+        <div class="usp-item"><i class="ri-hotel-bed-line"></i> Private Island Resorts</div>
+        <div class="usp-item"><i class="ri-flight-takeoff-line"></i> Direct Flight Options</div>
+        <div class="usp-item"><i class="ri-refund-line"></i> Flexible Cancellation</div>
+      </div>
+    </div>
+
+    <!-- Quick Search Widget Card -->
+    <div class="hero-search-card glass-card-dark fade-in">
+      <div class="card-header">
+        <h3><i class="ri-search-eye-line"></i> Find & Customize Your Trip</h3>
+        <span class="sub-label">Instant Quote & Expert Callback</span>
+      </div>
+
+      <form (ngSubmit)="onSearchSubmit()" class="search-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="depCity"><i class="ri-flight-takeoff-fill"></i> Departure City</label>
+            <select id="depCity" [(ngModel)]="searchDepartureCity" name="depCity" class="form-input">
+              <option *ngFor="let city of departureCities" [value]="city">{{ city }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="travelMonth"><i class="ri-calendar-event-fill"></i> Travel Month</label>
+            <select id="travelMonth" [(ngModel)]="searchTravelMonth" name="travelMonth" class="form-input">
+              <option *ngFor="let m of travelMonths" [value]="m">{{ m }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guests"><i class="ri-user-smile-fill"></i> Guests</label>
+            <select id="guests" [(ngModel)]="searchGuests" name="guests" class="form-input">
+              <option [value]="1">1 Adult (Solo)</option>
+              <option [value]="2">2 Adults (Couple)</option>
+              <option [value]="3">3-4 Guests (Family)</option>
+              <option [value]="5">5+ Guests (Group)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="category"><i class="ri-heart-3-fill"></i> Trip Type</label>
+            <select id="category" [(ngModel)]="searchCategory" name="category" class="form-input">
+              <option value="all">All Package Types</option>
+              <option value="Honeymoon">Honeymoon Special</option>
+              <option value="Luxury">Luxury Overwater / Villa</option>
+              <option value="Family">Family Vacation</option>
+              <option value="Budget">Budget Island Stays</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary btn-search">
+            <i class="ri-flashlight-fill"></i> Get Best Price Quote Now
+          </button>
+          <button type="button" class="btn-outline-light" (click)="openInstantInquiry()">
+            <i class="ri-phone-line"></i> Talk to Specialist
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

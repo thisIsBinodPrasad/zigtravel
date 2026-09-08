@@ -1,0 +1,161 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content glass-card fade-in" (click)="$event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="header-info">
+        <div class="meta-row">
+          <span class="dest-badge"><i class="ri-map-pin-fill"></i> {{ pkg.destinationName }}</span>
+          <span class="duration-badge"><i class="ri-time-line"></i> {{ pkg.duration }}</span>
+          <span class="rating-badge">★ {{ pkg.rating }} ({{ pkg.reviewCount }} Reviews)</span>
+        </div>
+        <h2>{{ pkg.title }}</h2>
+      </div>
+      <button class="close-btn" (click)="onClose()"><i class="ri-close-line"></i></button>
+    </div>
+
+    <!-- Modal Nav Tabs -->
+    <div class="modal-tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'itinerary'" (click)="activeTab = 'itinerary'">
+        <i class="ri-route-line"></i> Day-by-Day Itinerary
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'inclusions'" (click)="activeTab = 'inclusions'">
+        <i class="ri-checkbox-circle-line"></i> Inclusions & Stay
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'calculator'" (click)="activeTab = 'calculator'">
+        <i class="ri-calculator-line"></i> Live Price Customizer
+      </button>
+    </div>
+
+    <!-- Modal Body Content -->
+    <div class="modal-body">
+      <!-- TAB 1: ITINERARY -->
+      <div class="tab-content" *ngIf="activeTab === 'itinerary'">
+        <div class="itinerary-timeline">
+          <div class="timeline-day" *ngFor="let day of pkg.itinerary" [class.open]="expandedDay === day.dayNumber">
+            <div class="day-header" (click)="toggleDay(day.dayNumber)">
+              <div class="day-number">Day {{ day.dayNumber }}</div>
+              <div class="day-title-block">
+                <h4>{{ day.title }}</h4>
+                <span class="stay-info"><i class="ri-hotel-bed-line"></i> Stay: {{ day.stayName }}</span>
+              </div>
+              <i [class]="expandedDay === day.dayNumber ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" class="accordion-arrow"></i>
+            </div>
+
+            <div class="day-body" *ngIf="expandedDay === day.dayNumber">
+              <p class="day-desc">{{ day.description }}</p>
+
+              <div class="day-highlights">
+                <strong>Day Highlights:</strong>
+                <ul>
+                  <li *ngFor="let h of day.highlights"><i class="ri-check-line"></i> {{ h }}</li>
+                </ul>
+              </div>
+
+              <div class="meals-row" *ngIf="day.mealsIncluded && day.mealsIncluded.length > 0">
+                <span class="meal-label"><i class="ri-restaurant-line"></i> Meals:</span>
+                <span class="meal-tag" *ngFor="let m of day.mealsIncluded">{{ m }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: INCLUSIONS & EXCLUSIONS -->
+      <div class="tab-content" *ngIf="activeTab === 'inclusions'">
+        <div class="inc-exc-grid">
+          <div class="inc-box">
+            <h3><i class="ri-checkbox-circle-fill text-teal"></i> What's Included</h3>
+            <ul>
+              <li *ngFor="let inc of pkg.inclusions">
+                <i class="ri-check-double-line"></i> {{ inc }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="exc-box">
+            <h3><i class="ri-close-circle-fill text-coral"></i> What's Excluded</h3>
+            <ul>
+              <li *ngFor="let exc of pkg.exclusions">
+                <i class="ri-close-line"></i> {{ exc }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-box">
+          <h4><i class="ri-shield-flash-line"></i> Cancellation & Refund Policy</h4>
+          <p>{{ pkg.cancellationPolicy }}</p>
+        </div>
+      </div>
+
+      <!-- TAB 3: LIVE PRICE CUSTOMIZER -->
+      <div class="tab-content" *ngIf="activeTab === 'calculator'">
+        <div class="calc-wrapper">
+          <div class="calc-controls">
+            <div class="calc-group">
+              <label>Adults (12+ yrs)</label>
+              <div class="counter-input">
+                <button (click)="adultsCount = adultsCount > 1 ? adultsCount - 1 : 1">-</button>
+                <span>{{ adultsCount }}</span>
+                <button (click)="adultsCount = adultsCount + 1">+</button>
+              </div>
+            </div>
+
+            <div class="calc-group">
+              <label>Children (2-11 yrs)</label>
+              <div class="counter-input">
+                <button (click)="childrenCount = childrenCount > 0 ? childrenCount - 1 : 0">-</button>
+                <span>{{ childrenCount }}</span>
+                <button (click)="childrenCount = childrenCount + 1">+</button>
+              </div>
+            </div>
+
+            <div class="calc-group">
+              <label>Departure City</label>
+              <select [(ngModel)]="selectedDepartureCity" class="form-input">
+                <option *ngFor="let c of pkg.departureCities" [value]="c">From {{ c }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="add-ons-section">
+            <h4>Optional Upgrades & Add-ons</h4>
+            <label class="addon-checkbox">
+              <input type="checkbox" [(ngModel)]="addOnDinner" />
+              <span>Romantic Candlelight Beach Dinner (+₹4,500 / couple)</span>
+            </label>
+            <label class="addon-checkbox">
+              <input type="checkbox" [(ngModel)]="addOnSeaplane" />
+              <span>Upgrade Speedboat to Scenic Seaplane Flight (+₹18,500 / person)</span>
+            </label>
+            <label class="addon-checkbox">
+              <input type="checkbox" [(ngModel)]="addOnSpa" />
+              <span>Couples Rejuvenating Ocean Spa Massage Pass (+₹6,000 / couple)</span>
+            </label>
+          </div>
+
+          <div class="live-price-summary">
+            <div class="summary-details">
+              <span>Total Estimated Trip Price:</span>
+              <div class="big-price">₹{{ calculateTotalPrice() | number }}</div>
+              <small>All taxes & resort fees included</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="modal-footer">
+      <div class="price-callout">
+        <span class="label">Starting From</span>
+        <div class="val">₹{{ pkg.discountedPrice | number }} <small>/ person</small></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="btn-outline" (click)="onClose()">Close</button>
+        <button class="btn-primary" (click)="proceedToInquiry()"><i class="ri-send-plane-fill"></i> Submit Inquiry & Reserve</button>
+      </div>
+    </div>
+  </div>
+</div>

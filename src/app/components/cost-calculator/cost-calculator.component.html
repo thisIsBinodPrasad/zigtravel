@@ -1,0 +1,95 @@
+<section class="cost-calc-section" id="cost-calculator-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag"><i class="ri-calculator-line"></i> REAL-TIME PRICE ESTIMATOR</span>
+      <h2>Trip Cost Breakdown & Resort Tier Guide</h2>
+      <p>Estimate realistic travel expenses across hotel categories, meal plans, speedboats & activities</p>
+    </div>
+
+    <!-- Destination Switcher Pills for Calculator -->
+    <div class="dest-calc-selector">
+      <button 
+        *ngFor="let dest of destinations" 
+        class="calc-pill" 
+        [class.active]="selectedDestId === dest.id"
+        (click)="onDestSelect(dest.id)">
+        {{ dest.name }}
+      </button>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-main-grid" *ngIf="activeDestination">
+      <!-- Left Column: Resort Tiers Cards -->
+      <div class="tiers-column">
+        <h3><i class="ri-hotel-fill"></i> Accommodation Tiers in {{ activeDestination.name }}</h3>
+
+        <div class="tier-card glass-card" 
+          *ngFor="let tier of activeDestination.resortTiers; let idx = index"
+          [class.active]="selectedTierIndex === idx"
+          (click)="selectedTierIndex = idx">
+          <div class="tier-badge-row">
+            <span class="tier-name">{{ tier.category }}</span>
+            <span class="tier-price">{{ tier.priceRange }}</span>
+          </div>
+
+          <p class="best-for"><strong>Best for:</strong> {{ tier.bestFor }}</p>
+
+          <div class="options-list">
+            <span class="opt-tag" *ngFor="let opt of tier.popularOptions">{{ opt }}</span>
+          </div>
+
+          <div class="tier-inc">
+            <div class="inc-col">
+              <span class="inc-title"><i class="ri-check-line text-teal"></i> Inclusions:</span>
+              <ul>
+                <li *ngFor="let inc of tier.inclusions.slice(0, 3)">{{ inc }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Estimator Widget -->
+      <div class="estimator-column">
+        <div class="estimator-card glass-card-dark">
+          <div class="card-title">
+            <i class="ri-coins-line"></i>
+            <h3>Live Budget Calculator</h3>
+          </div>
+
+          <div class="control-row">
+            <label>Trip Duration (Days)</label>
+            <div class="slider-box">
+              <input type="range" min="3" max="10" [(ngModel)]="numDays" class="custom-range" />
+              <span class="val-display">{{ numDays }} Days / {{ numDays - 1 }} Nights</span>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <label>Number of Travelers</label>
+            <div class="slider-box">
+              <input type="range" min="1" max="6" [(ngModel)]="numGuests" class="custom-range" />
+              <span class="val-display">{{ numGuests }} Person(s)</span>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <label>Resort Experience Tier</label>
+            <div class="tier-buttons">
+              <button [class.active]="selectedTierIndex === 0" (click)="selectedTierIndex = 0">Budget</button>
+              <button [class.active]="selectedTierIndex === 1" (click)="selectedTierIndex = 1">Mid-Range</button>
+              <button [class.active]="selectedTierIndex === 2" (click)="selectedTierIndex = 2">Luxury Overwater</button>
+            </div>
+          </div>
+
+          <!-- Total Calculation Callout -->
+          <div class="total-callout">
+            <span class="callout-label">Estimated Total Land Price</span>
+            <div class="callout-price">₹{{ calculateEstimatedCost() | number }}</div>
+            <p class="callout-note">Covers hotel stays, speedboat/transfers, select meal plans & activities for {{ numGuests }} guest(s).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,223 @@
+.guide-section {
+  padding: 4rem 0;
+  background: var(--bg-light);
+}
+
+.guide-dest-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.guide-dest-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.guide-dest-btn.active {
+  background: var(--primary-deep);
+  color: #ffffff;
+  border-color: var(--primary-deep);
+}
+
+.sub-nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sub-nav-tabs button {
+  padding: 0.75rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.sub-nav-tabs button.active {
+  color: var(--primary-ocean);
+  border-bottom-color: var(--primary-ocean);
+}
+
+.guide-content-box {
+  padding: 2.2rem;
+  background: #ffffff;
+}
+
+.seasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.season-card {
+  padding: 1.4rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+}
+
+.season-header h4 {
+  font-size: 1.15rem;
+}
+
+.season-months {
+  font-size: 0.8rem;
+  color: var(--primary-ocean);
+  font-weight: 700;
+}
+
+.temp-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  margin: 0.5rem 0;
+}
+
+.weather-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.season-list ul {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.indian-festivals-box {
+  background: rgba(0, 180, 216, 0.08);
+  border: 1px dashed var(--accent-cyan);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.indian-festivals-box h4 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.holiday-chips {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: #ffffff;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Flights Tab */
+.flights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.flight-col h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.insight-box {
+  margin-top: 1rem;
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.insight-box ul {
+  list-style: none;
+  margin-top: 0.4rem;
+}
+
+/* Visa Tab */
+.visa-badge-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.visa-type-tag {
+  background: var(--accent-teal);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+}
+
+.fee-tag, .validity-tag {
+  background: #f1f5f9;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+}
+
+.visa-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.process-list {
+  padding-left: 1.2rem;
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+
+.docs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.protip-box {
+  background: #fef9c3;
+  padding: 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .flights-grid, .visa-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}

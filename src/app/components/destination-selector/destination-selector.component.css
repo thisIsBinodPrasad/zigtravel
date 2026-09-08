@@ -1,0 +1,128 @@
+.dest-selector-section {
+  padding: 3.5rem 0 2rem 0;
+  background: var(--bg-light);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-ocean);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.6rem;
+}
+
+.section-header h2 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 2.2rem;
+}
+
+/* Horizontal Scroll Container with ample padding to avoid clipping top badges */
+.dest-pills-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 1.8rem 0.5rem 1.25rem 0.5rem;
+  scrollbar-width: thin;
+}
+
+/* Unified Pill Card Styling for 100% Equal Height & Alignment */
+.dest-pill {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 80px;
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dest-pill:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-cyan);
+  box-shadow: var(--shadow-md);
+}
+
+.dest-pill.active {
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-ocean) 100%);
+  color: #ffffff;
+  border-color: var(--primary-ocean);
+  box-shadow: 0 10px 28px rgba(0, 119, 182, 0.35);
+}
+
+.pill-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.dest-pill-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.pill-name {
+  font-weight: 800;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.pill-price {
+  font-size: 0.82rem;
+  color: var(--accent-gold);
+  font-weight: 700;
+  margin-top: 0.25rem;
+  white-space: nowrap;
+}
+
+.dest-pill.active .pill-price {
+  color: var(--accent-gold);
+}
+
+/* Centered Top Badge - Positioned symmetrically above each card */
+.pill-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff595e 0%, #e63946 100%);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.35);
+  white-space: nowrap;
+  z-index: 10;
+  line-height: 1;
+  pointer-events: none;
+}

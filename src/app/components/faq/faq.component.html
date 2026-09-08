@@ -1,0 +1,21 @@
+<section class="faq-section">
+  <div class="container max-w-760">
+    <div class="section-header text-center">
+      <span class="section-tag"><i class="ri-questionnaire-line"></i> GOT QUESTIONS?</span>
+      <h2>Frequently Asked Questions</h2>
+      <p>Quick answers to common questions about bookings, flights, visa rules & customization</p>
+    </div>
+
+    <div class="faq-accordion">
+      <div class="faq-item glass-card" *ngFor="let item of faqs; let i = index" [class.open]="openIndex === i">
+        <div class="faq-question" (click)="toggleFaq(i)">
+          <h4>{{ item.q }}</h4>
+          <i [class]="openIndex === i ? 'ri-subtract-line' : 'ri-add-line'" class="faq-icon"></i>
+        </div>
+        <div class="faq-answer" *ngIf="openIndex === i">
+          <p>{{ item.a }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

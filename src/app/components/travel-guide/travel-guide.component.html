@@ -1,0 +1,124 @@
+<section class="guide-section" id="travel-guide-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag"><i class="ri-compass-discover-line"></i> ESSENTIAL TRAVEL INFORMATION</span>
+      <h2>Smart Travel Guide: Flights, Seasons & Visa</h2>
+      <p>Everything you need to know before booking your trip to {{ activeDestination?.name }}</p>
+    </div>
+
+    <!-- Destination Switcher Pills -->
+    <div class="guide-dest-tabs">
+      <button 
+        *ngFor="let dest of destinations" 
+        class="guide-dest-btn" 
+        [class.active]="selectedDestId === dest.id"
+        (click)="onDestSelect(dest.id)">
+        {{ dest.name }}
+      </button>
+    </div>
+
+    <!-- Sub-navigation Tabs -->
+    <div class="sub-nav-tabs">
+      <button [class.active]="activeTab === 'seasons'" (click)="activeTab = 'seasons'">
+        <i class="ri-sun-cloudy-line"></i> Best Time to Visit
+      </button>
+      <button [class.active]="activeTab === 'flights'" (click)="activeTab = 'flights'">
+        <i class="ri-flight-takeoff-line"></i> Flight Options & Fares
+      </button>
+      <button [class.active]="activeTab === 'visa'" (click)="activeTab = 'visa'">
+        <i class="ri-passport-line"></i> Visa & IMUGA Rules
+      </button>
+    </div>
+
+    <!-- Main Content Box -->
+    <div class="guide-content-box glass-card" *ngIf="activeDestination">
+      <!-- SEASONS TAB -->
+      <div class="tab-pane" *ngIf="activeTab === 'seasons'">
+        <div class="seasons-grid">
+          <div class="season-card" *ngFor="let season of activeDestination.seasons">
+            <div class="season-header">
+              <h4>{{ season.name }}</h4>
+              <span class="season-months">{{ season.months }}</span>
+            </div>
+            <span class="temp-badge"><i class="ri-temp-hot-line"></i> {{ season.temperature }}</span>
+            <p class="weather-desc">{{ season.weatherDescription }}</p>
+
+            <div class="season-list">
+              <span class="list-label text-teal"><i class="ri-thumb-up-fill"></i> Best For:</span>
+              <ul>
+                <li *ngFor="let item of season.bestFor">{{ item }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="indian-festivals-box">
+          <h4><i class="ri-calendar-check-fill"></i> Recommended Indian Holiday Travel Alignment</h4>
+          <div class="holiday-chips">
+            <span class="chip"><i class="ri-sparkles-fill"></i> Diwali Break (Oct/Nov)</span>
+            <span class="chip"><i class="ri-cup-fill"></i> Christmas & New Year (Dec 20 - Jan 5)</span>
+            <span class="chip"><i class="ri-sun-fill"></i> Summer School Vacations (May/June)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLIGHTS TAB -->
+      <div class="tab-pane" *ngIf="activeTab === 'flights'">
+        <div class="flights-grid">
+          <div class="flight-col">
+            <h3><i class="ri-flight-takeoff-line text-teal"></i> Direct Flight Details</h3>
+            <p><strong>Airlines:</strong> {{ activeDestination.flightInfo.directAirlines.join(', ') }}</p>
+            <p><strong>Flight Duration:</strong> Approx. {{ activeDestination.flightInfo.directDuration }}</p>
+            <p><strong>Price Range:</strong> {{ activeDestination.flightInfo.directPriceRange }}</p>
+
+            <div class="insight-box">
+              <strong>Key Flight Insights:</strong>
+              <ul>
+                <li *ngFor="let ins of activeDestination.flightInfo.insights"><i class="ri-check-line"></i> {{ ins }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flight-col">
+            <h3><i class="ri-flight-land-line text-ocean"></i> Connecting Flight Options</h3>
+            <p><strong>Layover Airlines:</strong> {{ activeDestination.flightInfo.connectingAirlines.join(', ') }}</p>
+            <p><strong>Total Travel Duration:</strong> {{ activeDestination.flightInfo.connectingDuration }}</p>
+            <p><strong>Booking Tip:</strong> {{ activeDestination.flightInfo.bestBookingMonths }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISA TAB -->
+      <div class="tab-pane" *ngIf="activeTab === 'visa'">
+        <div class="visa-container">
+          <div class="visa-badge-header">
+            <span class="visa-type-tag"><i class="ri-verified-badge-fill"></i> {{ activeDestination.visaInfo.type }}</span>
+            <span class="fee-tag">Fee: {{ activeDestination.visaInfo.fee }}</span>
+            <span class="validity-tag">Validity: {{ activeDestination.visaInfo.validity }}</span>
+          </div>
+
+          <div class="visa-steps-grid">
+            <div class="steps-col">
+              <h4>Step-by-Step Visa Process</h4>
+              <ol class="process-list">
+                <li *ngFor="let step of activeDestination.visaInfo.processSteps">{{ step }}</li>
+              </ol>
+            </div>
+
+            <div class="docs-col">
+              <h4>Mandatory Documents Checklist</h4>
+              <ul class="docs-list">
+                <li *ngFor="let doc of activeDestination.visaInfo.requiredDocs"><i class="ri-checkbox-circle-fill text-teal"></i> {{ doc }}</li>
+              </ul>
+
+              <div class="protip-box">
+                <i class="ri-lightbulb-fill text-gold"></i>
+                <span><strong>Pro-Tip:</strong> {{ activeDestination.visaInfo.proTip }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

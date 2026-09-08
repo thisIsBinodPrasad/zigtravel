@@ -1,0 +1,62 @@
+<header class="site-header">
+  <div class="top-announcement-bar">
+    <div class="container announcement-content">
+      <span>🔥 <strong>FLASH SALE:</strong> Up to 40% OFF on Maldives, Bali & Europe Summer Packages!</span>
+      <div class="announcement-right">
+        <span><i class="ri-shield-check-line"></i> 100% Price Match Guarantee</span>
+        <span class="divider">|</span>
+        <span><i class="ri-customer-service-2-line"></i> 24/7 On-Trip Assistance</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container nav-wrapper">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <div class="logo-icon"><i class="ri-compass-3-fill"></i></div>
+        <div class="logo-text">
+          <span class="brand-name">Zigo<span class="highlight">Holidays</span></span>
+          <span class="brand-sub">LUXURY TRAVEL</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <div class="nav-links" [class.active]="isMobileMenuOpen">
+        <div class="dest-dropdown">
+          <label for="navDestSelect" class="dropdown-label"><i class="ri-map-pin-line"></i> Destination:</label>
+          <select id="navDestSelect" [ngModel]="selectedDestination" (ngModelChange)="onDestinationChange($event)" class="nav-select">
+            <option *ngFor="let dest of destinations" [value]="dest.id">{{ dest.name }}</option>
+          </select>
+        </div>
+
+        <a href="#packages-section" class="nav-link" (click)="isMobileMenuOpen = false">Tour Packages</a>
+        <a href="#cost-calculator-section" class="nav-link" (click)="isMobileMenuOpen = false">Cost Estimator</a>
+        <a href="#travel-guide-section" class="nav-link" (click)="isMobileMenuOpen = false">Visa & Flight Guide</a>
+        <a href="#reviews-section" class="nav-link" (click)="isMobileMenuOpen = false">Reviews</a>
+
+        <div class="mobile-cta-wrapper">
+          <button class="btn-primary" (click)="openGeneralInquiry()"><i class="ri-phone-fill"></i> Talk to Expert</button>
+        </div>
+      </div>
+
+      <!-- Action Hotline & CTA -->
+      <div class="nav-actions">
+        <a href="tel:+9118008899900" class="phone-hotline">
+          <div class="hotline-icon"><i class="ri-phone-line"></i></div>
+          <div class="hotline-text">
+            <span class="label">Trip Helpline</span>
+            <span class="number">+91 1800-889-9900</span>
+          </div>
+        </a>
+        <button class="btn-primary animate-pulse-glow" (click)="openGeneralInquiry()">
+          <i class="ri-send-plane-fill"></i> Request Callback
+        </button>
+
+        <button class="hamburger-btn" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+          <i [class]="isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-3-line'"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

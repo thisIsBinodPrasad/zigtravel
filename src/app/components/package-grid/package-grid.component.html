@@ -1,0 +1,94 @@
+<section class="package-grid-section">
+  <div class="container">
+    <div class="results-header">
+      <div class="header-left">
+        <h3>Available Tour Packages</h3>
+        <span class="count-badge">{{ packages.length }} Handpicked Packages Found</span>
+      </div>
+      <div class="trust-guarantee">
+        <i class="ri-shield-check-fill text-teal"></i> Best Price & Instant Confirmation Guarantee
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state glass-card" *ngIf="packages.length === 0">
+      <div class="empty-icon"><i class="ri-search-line"></i></div>
+      <h4>No exact matching packages found</h4>
+      <p>Try resetting filters or expanding your departure city and category selections.</p>
+      <button class="btn-ocean" (click)="resetFilters()"><i class="ri-refresh-line"></i> Reset All Filters</button>
+    </div>
+
+    <!-- Package Cards Grid -->
+    <div class="packages-grid" *ngIf="packages.length > 0">
+      <div class="package-card glass-card fade-in" *ngFor="let pkg of packages">
+        <!-- Card Image & Badges -->
+        <div class="card-image-wrapper">
+          <img [src]="pkg.imageUrl" [alt]="pkg.title" class="package-img" loading="lazy" />
+          <div class="image-overlay"></div>
+          
+          <div class="top-badges">
+            <span class="badge-discount">-{{ pkg.discountPercent }}% OFF</span>
+            <span class="badge-bestseller" *ngIf="pkg.bestseller"><i class="ri-fire-fill"></i> Bestseller</span>
+            <span class="badge-honeymoon" *ngIf="pkg.honeymoonSpecial"><i class="ri-heart-fill"></i> Honeymoon</span>
+          </div>
+
+          <div class="duration-pill">
+            <i class="ri-time-line"></i> {{ pkg.duration }}
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="dest-name"><i class="ri-map-pin-2-fill"></i> {{ pkg.destinationName }}</span>
+            <div class="rating-badge">
+              <span class="star">★</span>
+              <span class="score">{{ pkg.rating }}</span>
+              <span class="reviews">({{ pkg.reviewCount }})</span>
+            </div>
+          </div>
+
+          <h4 class="package-title" (click)="openPackageDetail(pkg)">{{ pkg.title }}</h4>
+          
+          <div class="resort-tag">
+            <i class="ri-hotel-line"></i> Stay: <strong>{{ pkg.resortName }}</strong> ({{ pkg.resortCategory }})
+          </div>
+
+          <!-- Key Inclusions -->
+          <div class="inclusions-list">
+            <span class="inclusion-pill" *ngFor="let inc of pkg.inclusions.slice(0, 3)">
+              <i class="ri-checkbox-circle-fill"></i> {{ inc }}
+            </span>
+            <span class="more-inc" *ngIf="pkg.inclusions.length > 3">+{{ pkg.inclusions.length - 3 }} More</span>
+          </div>
+
+          <div class="card-footer">
+            <div class="price-block">
+              <span class="price-label">Land Package / Person</span>
+              <div class="price-figures">
+                <span class="original-price">₹{{ pkg.originalPrice | number }}</span>
+                <span class="discounted-price">₹{{ pkg.discountedPrice | number }}</span>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-outline btn-details" (click)="openPackageDetail(pkg)">
+                View Itinerary
+              </button>
+              <button class="btn-primary btn-book" (click)="openInquiry(pkg)">
+                Get Quote
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Package Detail Modal -->
+<app-package-detail-modal 
+  *ngIf="isDetailModalOpen && selectedPackageForModal" 
+  [pkg]="selectedPackageForModal" 
+  (closeModal)="closePackageDetail()">
+</app-package-detail-modal>

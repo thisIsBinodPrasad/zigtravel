@@ -1,0 +1,32 @@
+<section class="reviews-section" id="reviews-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag"><i class="ri-user-star-line"></i> VERIFIED TRAVELER EXPERIENCES</span>
+      <h2>Real Stories from Happy Travelers</h2>
+      <p>Over 14,200+ travelers trust ZigoHolidays for their international & domestic holidays</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card glass-card" *ngFor="let r of reviews">
+        <div class="review-top">
+          <img [src]="r.avatar" [alt]="r.name" class="user-avatar" />
+          <div class="user-info">
+            <h4>{{ r.name }}</h4>
+            <span class="trip-tag">{{ r.trip }} ({{ r.duration }})</span>
+          </div>
+          <span class="verified-badge"><i class="ri-checkbox-circle-fill"></i> Verified</span>
+        </div>
+
+        <div class="rating-stars">
+          <span *ngFor="let s of [1,2,3,4,5]">★</span>
+        </div>
+
+        <p class="review-comment">"{{ r.comment }}"</p>
+
+        <div class="stay-note">
+          <i class="ri-hotel-line"></i> Resort Booked: {{ r.stay }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

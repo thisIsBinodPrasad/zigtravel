@@ -1,0 +1,88 @@
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Info -->
+      <div class="footer-col brand-col">
+        <div class="brand-logo">
+          <div class="logo-icon"><i class="ri-compass-3-fill"></i></div>
+          <div class="logo-text">
+            <span class="brand-name">Zigo<span class="highlight">Holidays</span></span>
+            <span class="brand-sub">LUXURY GLOBAL HOLIDAYS</span>
+          </div>
+        </div>
+
+        <p class="brand-desc">
+          ZigoHolidays is India's leading luxury travel platform offering curated international and domestic tour packages with best price guarantee, free visa guidance, and 24/7 on-trip assistance.
+        </p>
+
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+          <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: International Packages -->
+      <div class="footer-col">
+        <h4>International Packages</h4>
+        <ul>
+          <li><a href="#packages-section">Maldives Tour Packages</a></li>
+          <li><a href="#packages-section">Bali Honeymoon Packages</a></li>
+          <li><a href="#packages-section">Dubai Holiday Deals</a></li>
+          <li><a href="#packages-section">Europe Highlights Tour</a></li>
+          <li><a href="#packages-section">Thailand Island Trips</a></li>
+          <li><a href="#packages-section">Vietnam & Singapore Tours</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Domestic Destinations -->
+      <div class="footer-col">
+        <h4>Domestic Holidays</h4>
+        <ul>
+          <li><a href="#packages-section">Kashmir Houseboat & Gulmarg</a></li>
+          <li><a href="#packages-section">Kerala Backwaters & Munnar</a></li>
+          <li><a href="#packages-section">Ladakh Bike & Jeep Safari</a></li>
+          <li><a href="#packages-section">Spiti Valley Expedition</a></li>
+          <li><a href="#packages-section">Andaman Beach Packages</a></li>
+          <li><a href="#packages-section">Rajasthan Royal Palaces</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter & Support -->
+      <div class="footer-col">
+        <h4>Subscribe for Flash Deals</h4>
+        <p class="news-desc">Get exclusive secret travel deals and up to 40% OFF discount vouchers in your inbox.</p>
+
+        <form (ngSubmit)="onSubscribe()" class="newsletter-form">
+          <input 
+            type="email" 
+            [(ngModel)]="newsletterEmail" 
+            name="newsletterEmail" 
+            placeholder="Enter your email address" 
+            required 
+            class="news-input" />
+          <button type="submit" class="btn-ocean news-btn"><i class="ri-send-plane-fill"></i></button>
+        </form>
+
+        <span class="sub-success text-teal" *ngIf="subscribed"><i class="ri-checkbox-circle-fill"></i> Subscribed! Thank you.</span>
+
+        <div class="support-info">
+          <p><i class="ri-phone-fill text-gold"></i> <strong>Hotline:</strong> +91 1800-889-9900</p>
+          <p><i class="ri-mail-fill text-gold"></i> <strong>Support:</strong> support@zigoholidays.com</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p>© 2026 ZigoHolidays Global Pvt Ltd. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Site Map</a>
+      </div>
+    </div>
+  </div>
+</footer>

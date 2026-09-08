@@ -1,0 +1,36 @@
+<section class="dest-selector-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag"><i class="ri-earth-line"></i> TOP TRAVEL DESTINATIONS</span>
+      <h2>Choose Your Next Dream Getaway</h2>
+      <p>Browse handpicked holiday packages for premier island, beach, desert & mountain destinations worldwide</p>
+    </div>
+
+    <div class="dest-pills-wrapper">
+      <!-- All Destinations Card -->
+      <button 
+        class="dest-pill pill-all" 
+        [class.active]="activeDestId === 'all'" 
+        (click)="selectDestination('all')">
+        <span class="pill-icon">🌍</span>
+        <div class="dest-pill-info">
+          <span class="pill-name">All Destinations</span>
+          <span class="pill-price">Explore Packages</span>
+        </div>
+      </button>
+
+      <!-- Destination Specific Cards -->
+      <button 
+        *ngFor="let dest of destinations" 
+        class="dest-pill" 
+        [class.active]="activeDestId === dest.id" 
+        (click)="selectDestination(dest.id)">
+        <span class="pill-badge" *ngIf="dest.badge">{{ dest.badge }}</span>
+        <div class="dest-pill-info">
+          <span class="pill-name">{{ dest.name }}</span>
+          <span class="pill-price">From ₹{{ dest.startingPrice | number }}</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
