@@ -63,16 +63,59 @@ export class InquiryModalComponent implements OnInit, OnDestroy {
     this.inquiryService.closeModal();
   }
 
+  whatsappUrl = '';
+  mailtoUrl = '';
+
   onSubmit() {
     if (!this.formData.fullName || !this.formData.phone) {
-      alert('Please provide your name and phone number so our travel specialist can call you.');
+      alert('Please provide your full name and contact number.');
       return;
     }
 
     this.isSubmitting = true;
+
+    // Generate formatted inquiry text for WhatsApp & Mail
+    const pkgText = this.selectedPackage ? `Package: ${this.selectedPackage.title}` : `Destination: ${this.formData.destinationId.toUpperCase()}`;
+    const message = `*NEW TRIP CUSTOMIZATION REQUEST*\n\n` +
+      `👤 *Customer Name:* ${this.formData.fullName}\n` +
+      `📞 *Contact Number:* ${this.formData.phone}\n` +
+      `✉️ *Mail ID:* ${this.formData.email || 'Not Provided'}\n\n` +
+      `📍 *Trip Info:* ${pkgText}\n` +
+      `✈️ *Departure City:* ${this.formData.departureCity}\n` +
+      `📅 *Travel Month:* ${this.formData.travelMonth}\n` +
+      `👥 *Guests:* ${this.formData.adultsCount} Adult(s), ${this.formData.childrenCount} Child(ren)\n\n` +
+      `📝 *Requirement Details:* ${this.formData.customRequests || 'Standard Customization'}`;
+
+    const encodedMsg = encodeURIComponent(message);
+    this.whatsappUrl = `https://wa.me/918970034810?text=${encodedMsg}`;
+    this.mailtoUrl = `mailto:info@zigoholidays.com?subject=Trip Customization Request from ${encodeURIComponent(this.formData.fullName)}&body=${encodedMsg}`;
+
     this.inquiryService.submitInquiry(this.formData).then(() => {
       this.isSubmitting = false;
       this.isSubmitted = true;
+
+      // Automatically open WhatsApp in new tab for immediate delivery
+      try {
+        window.open(this.whatsappUrl, '_blank');
+      } catch (e) {
+        console.log('Window popup blocked', e);
+      }
     });
+  }
+
+  openWhatsAppDirect() {
+    if (this.whatsappUrl) {
+      window.open(this.whatsappUrl, '_blank');
+    } else {
+      window.open('https://wa.me/918970034810?text=Hi%20ZigoHolidays,%20I%20want%20to%20get%20my%20trip%20customized', '_blank');
+    }
+  }
+
+  openMailDirect() {
+    if (this.mailtoUrl) {
+      window.location.href = this.mailtoUrl;
+    } else {
+      window.location.href = 'mailto:info@zigoholidays.com?subject=Trip%20Customization%20Request';
+    }
   }
 }

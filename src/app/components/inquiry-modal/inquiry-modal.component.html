@@ -5,10 +5,10 @@
     <!-- FORM STATE -->
     <div class="modal-inner" *ngIf="!isSubmitted">
       <div class="inquiry-header text-center">
-        <div class="badge-tag-gold"><i class="ri-flashlight-fill"></i> Instant Callback in 15 Minutes</div>
-        <h2>Request Free Custom Quote</h2>
-        <p *ngIf="selectedPackage">Selected: <strong>{{ selectedPackage.title }}</strong></p>
-        <p *ngIf="!selectedPackage">Get personalized itinerary options & best group discounts from our travel experts</p>
+        <div class="badge-tag-gold"><i class="ri-magic-line"></i> Tailored Itinerary Specialist</div>
+        <h2>Get your trip customized</h2>
+        <p *ngIf="selectedPackage">Selected Package: <strong>{{ selectedPackage.title }}</strong></p>
+        <p *ngIf="!selectedPackage">Share your travel requirements to receive a personalized day-wise itinerary & quote directly on WhatsApp and Mail.</p>
       </div>
 
       <form (ngSubmit)="onSubmit()" class="inquiry-form">
@@ -19,15 +19,15 @@
           </div>
 
           <div class="form-group">
-            <label><i class="ri-phone-line"></i> Phone Number (WhatsApp) *</label>
-            <input type="tel" [(ngModel)]="formData.phone" name="phone" placeholder="+91 98765 43210" required class="inquiry-input" />
+            <label><i class="ri-whatsapp-line"></i> Customer Contact Number *</label>
+            <input type="tel" [(ngModel)]="formData.phone" name="phone" placeholder="+91 8970034810" required class="inquiry-input" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label><i class="ri-mail-line"></i> Email Address</label>
-            <input type="email" [(ngModel)]="formData.email" name="email" placeholder="rahul@example.com" class="inquiry-input" />
+            <label><i class="ri-mail-line"></i> Mail ID *</label>
+            <input type="email" [(ngModel)]="formData.email" name="email" placeholder="rahul@example.com" required class="inquiry-input" />
           </div>
 
           <div class="form-group">
@@ -40,52 +40,63 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label><i class="ri-calendar-line"></i> Travel Month</label>
-            <input type="text" [(ngModel)]="formData.travelMonth" name="travelMonth" placeholder="e.g. October 2026" class="inquiry-input" />
+            <label><i class="ri-calendar-line"></i> Expected Travel Month / Dates</label>
+            <input type="text" [(ngModel)]="formData.travelMonth" name="travelMonth" placeholder="e.g. November 2026" class="inquiry-input" />
           </div>
 
           <div class="form-group">
             <label><i class="ri-group-line"></i> Number of Guests</label>
             <div class="guest-counter">
               <select [(ngModel)]="formData.adultsCount" name="adultsCount" class="inquiry-input">
-                <option [value]="1">1 Adult</option>
+                <option [value]="1">1 Adult (Solo)</option>
                 <option [value]="2">2 Adults (Couple)</option>
                 <option [value]="3">3 Adults</option>
-                <option [value]="4">4+ Group</option>
+                <option [value]="4">4+ Group / Family</option>
               </select>
             </div>
           </div>
         </div>
 
         <div class="form-group full-width">
-          <label><i class="ri-chat-1-line"></i> Specific Requests / Questions</label>
-          <textarea [(ngModel)]="formData.customRequests" name="customRequests" rows="2" placeholder="e.g. Overwater villa with private pool, vegetarian food, seaplane upgrade..." class="inquiry-input"></textarea>
+          <label><i class="ri-chat-1-line"></i> Detailed Requirement Description *</label>
+          <textarea 
+            [(ngModel)]="formData.customRequests" 
+            name="customRequests" 
+            rows="3" 
+            placeholder="Describe your trip requirements (e.g., preferred hotel category 4★/5★, overwater villa, private pool, flight preference, meal preference veg/non-veg, specific places to visit)..." 
+            class="inquiry-input"></textarea>
         </div>
 
         <button type="submit" class="btn-primary submit-btn animate-pulse-glow" [disabled]="isSubmitting">
-          <span *ngIf="!isSubmitting"><i class="ri-send-plane-fill"></i> Get Best Price Quote Now</span>
-          <span *ngIf="isSubmitting"><i class="ri-loader-4-line spin"></i> Sending Request...</span>
+          <span *ngIf="!isSubmitting"><i class="ri-magic-line"></i> Get your trip customized</span>
+          <span *ngIf="isSubmitting"><i class="ri-loader-4-line spin"></i> Processing Custom Request...</span>
         </button>
 
-        <p class="privacy-note"><i class="ri-lock-line"></i> 100% Privacy Protected. No spam guaranteed.</p>
+        <p class="privacy-note">
+          <i class="ri-whatsapp-fill text-teal"></i> Details will be sent to our official WhatsApp (<strong>8970034810</strong>) & Mail (<strong>info@zigoholidays.com</strong>).
+        </p>
       </form>
     </div>
 
     <!-- SUCCESS STATE -->
     <div class="modal-success text-center fade-in" *ngIf="isSubmitted">
       <div class="success-icon"><i class="ri-checkbox-circle-fill"></i></div>
-      <h2>Inquiry Received Successfully!</h2>
-      <p>Thank you, <strong>{{ formData.fullName }}</strong>. Our travel specialist has assigned reference ticket <strong>#AT-{{ 99420 + (formData.fullName.length * 12) }}</strong> to your request.</p>
+      <h2>Trip Customization Request Sent!</h2>
+      <p>Thank you, <strong>{{ formData.fullName }}</strong>. Your trip details have been compiled and sent to our team via WhatsApp (<strong>+91 8970034810</strong>) and Mail.</p>
 
       <div class="next-steps-card">
-        <h4>What Happens Next?</h4>
-        <ul>
-          <li><i class="ri-phone-fill text-teal"></i> Our destination expert will call you on <strong>{{ formData.phone }}</strong> within 15 minutes.</li>
-          <li><i class="ri-whatsapp-fill text-teal"></i> Customized PDF itinerary & price quote will be sent directly to your WhatsApp.</li>
-        </ul>
+        <h4>Instant Delivery Options:</h4>
+        <div class="dispatch-actions">
+          <button class="btn-whatsapp" (click)="openWhatsAppDirect()">
+            <i class="ri-whatsapp-fill"></i> Open WhatsApp Chat (+91 8970034810)
+          </button>
+          <button class="btn-outline" (click)="openMailDirect()">
+            <i class="ri-mail-send-line"></i> Send via Email
+          </button>
+        </div>
       </div>
 
-      <button class="btn-ocean" (click)="close()">Done & Back to Browsing</button>
+      <button class="btn-ocean" (click)="close()">Done & Back to Website</button>
     </div>
   </div>
 </div>

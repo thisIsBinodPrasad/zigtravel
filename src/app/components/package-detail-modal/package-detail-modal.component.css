@@ -122,30 +122,50 @@
   flex: 1;
 }
 
-.timeline-day {
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.8rem;
-  overflow: hidden;
+/* Thrillophilia Style Itinerary Timeline */
+.itinerary-timeline-thrill {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
-.day-header {
-  padding: 1rem;
-  background: var(--bg-light);
+.timeline-day-card {
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.timeline-day-card:hover {
+  border-color: #ff5722;
+  box-shadow: 0 4px 14px rgba(255, 87, 34, 0.12);
+}
+
+.day-header-bar {
+  padding: 1rem 1.25rem;
+  background: #fffcf8;
   display: flex;
   align-items: center;
   gap: 1rem;
   cursor: pointer;
+  border-bottom: 1px solid transparent;
 }
 
-.day-number {
-  background: var(--primary-ocean);
+.timeline-day-card.open .day-header-bar {
+  border-bottom-color: #f1f5f9;
+}
+
+.day-badge-orange {
+  background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%);
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-sm);
   white-space: nowrap;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 8px rgba(255, 87, 34, 0.3);
 }
 
 .day-title-block {
@@ -154,175 +174,116 @@
 
 .day-title-block h4 {
   font-size: 1.05rem;
+  color: #0f172a;
   margin-bottom: 0.2rem;
 }
 
-.stay-info {
+.stay-pill {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.accordion-arrow {
-  font-size: 1.4rem;
-  color: var(--text-muted);
-}
-
-.day-body {
+.day-expandable-content {
   padding: 1.25rem;
   background: #ffffff;
-  border-top: 1px solid var(--border-light);
 }
 
 .day-desc {
   font-size: 0.92rem;
-  color: var(--text-main);
+  line-height: 1.6;
+  color: #334155;
   margin-bottom: 1rem;
 }
 
-.day-highlights ul {
+.day-highlights-box {
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.85rem;
+  border: 1px dashed #cbd5e1;
+}
+
+.day-highlights-box .box-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.highlights-grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.4rem;
-  margin-top: 0.4rem;
-}
-
-.day-highlights li {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.day-highlights li i {
-  color: var(--accent-teal);
-}
-
-.meals-row {
-  margin-top: 0.8rem;
-  font-size: 0.82rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.meal-tag {
-  background: #f1f5f9;
-  padding: 0.15rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-/* Inclusions Tab */
-.inc-exc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.inc-box h3, .exc-box h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.inc-box ul, .exc-box ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.inc-box li, .exc-box li {
-  font-size: 0.88rem;
-  display: flex;
-  align-items: flex-start;
   gap: 0.5rem;
 }
 
-.text-teal { color: var(--accent-teal); }
-.text-coral { color: var(--accent-coral); }
-
-.policy-box {
-  background: #f8fafc;
-  padding: 1.2rem;
-  border-radius: var(--radius-sm);
-  border-left: 4px solid var(--primary-ocean);
-}
-
-.policy-box h4 {
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
+.highlights-grid li {
+  font-size: 0.85rem;
+  color: #475569;
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-.policy-box p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* Calc Tab */
-.calc-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.calc-controls {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.counter-input {
+.meals-bar {
   display: flex;
   align-items: center;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  width: 130px;
+  gap: 0.5rem;
+  font-size: 0.82rem;
 }
 
-.counter-input button {
-  width: 40px;
-  height: 40px;
-  background: var(--bg-light);
+.meal-label {
   font-weight: 700;
-}
-
-.counter-input span {
-  flex: 1;
-  text-align: center;
-  font-weight: 700;
-}
-
-.addon-checkbox {
+  color: #0f172a;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
+  gap: 0.3rem;
 }
 
-.live-price-summary {
-  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-ocean) 100%);
-  color: #ffffff;
-  padding: 1.5rem;
+.meal-chip {
+  background: rgba(0, 184, 148, 0.12);
+  color: #00896f;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+}
+
+/* Customization Promo Card */
+.customization-promo-card {
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(135deg, #fffbf5 0%, #fff3e0 100%);
+  border: 2px dashed #ffb703;
   border-radius: var(--radius-md);
-  text-align: center;
+
 }
 
-.big-price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--accent-gold);
+.promo-icon {
+  font-size: 3rem;
+  color: #ff5722;
+  margin-bottom: 1rem;
+}
+
+.customization-promo-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.customization-promo-card p {
+  color: #64748b;
+  max-width: 550px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.btn-large {
+  padding: 1rem 2.2rem;
+  font-size: 1.05rem;
 }
 
 /* Modal Footer */

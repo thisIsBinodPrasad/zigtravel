@@ -6,54 +6,56 @@
         <div class="meta-row">
           <span class="dest-badge"><i class="ri-map-pin-fill"></i> {{ pkg.destinationName }}</span>
           <span class="duration-badge"><i class="ri-time-line"></i> {{ pkg.duration }}</span>
-          <span class="rating-badge">★ {{ pkg.rating }} ({{ pkg.reviewCount }} Reviews)</span>
+          <span class="rating-badge">★ {{ pkg.rating }} ({{ pkg.reviewCount }} Verified Reviews)</span>
         </div>
         <h2>{{ pkg.title }}</h2>
       </div>
       <button class="close-btn" (click)="onClose()"><i class="ri-close-line"></i></button>
     </div>
 
-    <!-- Modal Nav Tabs -->
+    <!-- Modal Nav Tabs (Thrillophilia Style) -->
     <div class="modal-tabs">
       <button class="tab-btn" [class.active]="activeTab === 'itinerary'" (click)="activeTab = 'itinerary'">
-        <i class="ri-route-line"></i> Day-by-Day Itinerary
+        <i class="ri-route-line"></i> Detailed Day-Wise Itinerary
       </button>
       <button class="tab-btn" [class.active]="activeTab === 'inclusions'" (click)="activeTab = 'inclusions'">
-        <i class="ri-checkbox-circle-line"></i> Inclusions & Stay
+        <i class="ri-checkbox-circle-line"></i> Inclusions, Hotel & Policy
       </button>
       <button class="tab-btn" [class.active]="activeTab === 'calculator'" (click)="activeTab = 'calculator'">
-        <i class="ri-calculator-line"></i> Live Price Customizer
+        <i class="ri-magic-line"></i> Customize This Trip
       </button>
     </div>
 
     <!-- Modal Body Content -->
     <div class="modal-body">
-      <!-- TAB 1: ITINERARY -->
+      <!-- TAB 1: THRILLOPHILIA STYLE ITINERARY -->
       <div class="tab-content" *ngIf="activeTab === 'itinerary'">
-        <div class="itinerary-timeline">
-          <div class="timeline-day" *ngFor="let day of pkg.itinerary" [class.open]="expandedDay === day.dayNumber">
-            <div class="day-header" (click)="toggleDay(day.dayNumber)">
-              <div class="day-number">Day {{ day.dayNumber }}</div>
+        <div class="itinerary-timeline-thrill">
+          <div class="timeline-day-card" *ngFor="let day of pkg.itinerary" [class.open]="expandedDay === day.dayNumber">
+            <div class="day-header-bar" (click)="toggleDay(day.dayNumber)">
+              <div class="day-badge-orange">DAY {{ day.dayNumber }}</div>
               <div class="day-title-block">
                 <h4>{{ day.title }}</h4>
-                <span class="stay-info"><i class="ri-hotel-bed-line"></i> Stay: {{ day.stayName }}</span>
+                <div class="stay-pill"><i class="ri-hotel-bed-fill"></i> Stay: <strong>{{ day.stayName }}</strong></div>
               </div>
               <i [class]="expandedDay === day.dayNumber ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" class="accordion-arrow"></i>
             </div>
 
-            <div class="day-body" *ngIf="expandedDay === day.dayNumber">
+            <div class="day-expandable-content" *ngIf="expandedDay === day.dayNumber">
               <p class="day-desc">{{ day.description }}</p>
 
-              <div class="day-highlights">
-                <strong>Day Highlights:</strong>
-                <ul>
-                  <li *ngFor="let h of day.highlights"><i class="ri-check-line"></i> {{ h }}</li>
+              <!-- Day Highlights -->
+              <div class="day-highlights-box">
+                <span class="box-title"><i class="ri-sparkles-fill text-gold"></i> Key Day Highlights:</span>
+                <ul class="highlights-grid">
+                  <li *ngFor="let h of day.highlights"><i class="ri-checkbox-circle-fill text-teal"></i> {{ h }}</li>
                 </ul>
               </div>
 
-              <div class="meals-row" *ngIf="day.mealsIncluded && day.mealsIncluded.length > 0">
-                <span class="meal-label"><i class="ri-restaurant-line"></i> Meals:</span>
-                <span class="meal-tag" *ngFor="let m of day.mealsIncluded">{{ m }}</span>
+              <!-- Day Meals -->
+              <div class="meals-bar" *ngIf="day.mealsIncluded && day.mealsIncluded.length > 0">
+                <span class="meal-label"><i class="ri-restaurant-2-fill"></i> Meals Included:</span>
+                <span class="meal-chip" *ngFor="let m of day.mealsIncluded">{{ m }}</span>
               </div>
             </div>
           </div>
@@ -83,64 +85,21 @@
         </div>
 
         <div class="policy-box">
-          <h4><i class="ri-shield-flash-line"></i> Cancellation & Refund Policy</h4>
+          <h4><i class="ri-shield-check-line"></i> Cancellation & Refund Policy</h4>
           <p>{{ pkg.cancellationPolicy }}</p>
         </div>
       </div>
 
-      <!-- TAB 3: LIVE PRICE CUSTOMIZER -->
+      <!-- TAB 3: CUSTOMIZATION REQUEST -->
       <div class="tab-content" *ngIf="activeTab === 'calculator'">
-        <div class="calc-wrapper">
-          <div class="calc-controls">
-            <div class="calc-group">
-              <label>Adults (12+ yrs)</label>
-              <div class="counter-input">
-                <button (click)="adultsCount = adultsCount > 1 ? adultsCount - 1 : 1">-</button>
-                <span>{{ adultsCount }}</span>
-                <button (click)="adultsCount = adultsCount + 1">+</button>
-              </div>
-            </div>
-
-            <div class="calc-group">
-              <label>Children (2-11 yrs)</label>
-              <div class="counter-input">
-                <button (click)="childrenCount = childrenCount > 0 ? childrenCount - 1 : 0">-</button>
-                <span>{{ childrenCount }}</span>
-                <button (click)="childrenCount = childrenCount + 1">+</button>
-              </div>
-            </div>
-
-            <div class="calc-group">
-              <label>Departure City</label>
-              <select [(ngModel)]="selectedDepartureCity" class="form-input">
-                <option *ngFor="let c of pkg.departureCities" [value]="c">From {{ c }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="add-ons-section">
-            <h4>Optional Upgrades & Add-ons</h4>
-            <label class="addon-checkbox">
-              <input type="checkbox" [(ngModel)]="addOnDinner" />
-              <span>Romantic Candlelight Beach Dinner (+₹4,500 / couple)</span>
-            </label>
-            <label class="addon-checkbox">
-              <input type="checkbox" [(ngModel)]="addOnSeaplane" />
-              <span>Upgrade Speedboat to Scenic Seaplane Flight (+₹18,500 / person)</span>
-            </label>
-            <label class="addon-checkbox">
-              <input type="checkbox" [(ngModel)]="addOnSpa" />
-              <span>Couples Rejuvenating Ocean Spa Massage Pass (+₹6,000 / couple)</span>
-            </label>
-          </div>
-
-          <div class="live-price-summary">
-            <div class="summary-details">
-              <span>Total Estimated Trip Price:</span>
-              <div class="big-price">₹{{ calculateTotalPrice() | number }}</div>
-              <small>All taxes & resort fees included</small>
-            </div>
-          </div>
+        <div class="customization-promo-card text-center">
+          <div class="promo-icon"><i class="ri-magic-fill"></i></div>
+          <h3>Want to Customize this {{ pkg.destinationName }} Package?</h3>
+          <p>We can adjust the duration, add private transfers, upgrade resort villas, or include custom sightseeing activities as per your exact preferences!</p>
+          
+          <button class="btn-primary btn-large animate-pulse-glow" (click)="proceedToInquiry()">
+            <i class="ri-magic-line"></i> Get your trip customized
+          </button>
         </div>
       </div>
     </div>
@@ -148,13 +107,15 @@
     <!-- Modal Footer Actions -->
     <div class="modal-footer">
       <div class="price-callout">
-        <span class="label">Starting From</span>
+        <span class="label">Package Starting From</span>
         <div class="val">₹{{ pkg.discountedPrice | number }} <small>/ person</small></div>
       </div>
 
       <div class="action-btns">
         <button class="btn-outline" (click)="onClose()">Close</button>
-        <button class="btn-primary" (click)="proceedToInquiry()"><i class="ri-send-plane-fill"></i> Submit Inquiry & Reserve</button>
+        <button class="btn-primary" (click)="proceedToInquiry()">
+          <i class="ri-magic-line"></i> Get your trip customized
+        </button>
       </div>
     </div>
   </div>

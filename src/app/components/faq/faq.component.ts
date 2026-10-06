@@ -11,7 +11,7 @@ export class FaqComponent {
   faqs = [
     {
       q: 'How does booking with ZigoHolidays work?',
-      a: 'Simply choose your destination package, customize your dates and travelers, and click "Get Quote" or "Request Callback". Our travel specialist will connect with you via WhatsApp/Call within 15 minutes to share tailored PDF itineraries, price options, and secure booking links.'
+      a: 'Simply choose your destination package, customize your dates and travelers, and click "Get your trip customized". Our travel specialist will connect with you via WhatsApp (8970034810) or Call within 15 minutes to share tailored PDF itineraries, price options, and secure booking links.'
     },
     {
       q: 'Are international flight tickets included in the packages?',

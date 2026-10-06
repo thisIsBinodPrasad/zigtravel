@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh-pages": "ng build --base-href /zigtravel/",
+    "deploy": "ng build --base-href /zigtravel/ && npx gh-pages -d dist/travel-app",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

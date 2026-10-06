@@ -3,22 +3,25 @@
    ========================================================================== */
 
 :root {
-  /* Color Tokens - Modern Ocean & Island Luxury */
-  --primary-dark: #071927;
-  --primary-deep: #0a2540;
-  --primary-ocean: #0077b6;
-  --accent-cyan: #00b4d8;
-  --accent-teal: #02c39a;
+  /* Color Tokens - Thrillophilia Inspired Vibrant & Luxury Palette */
+  --primary-orange: #ff5722;
+  --primary-orange-hover: #e64a19;
+  --accent-amber: #ffa000;
   --accent-gold: #ffb703;
-  --accent-gold-hover: #ffa200;
+  --accent-teal: #00b894;
+  --accent-cyan: #00b4d8;
   --accent-coral: #ff595e;
+  
+  --primary-dark: #0f172a;
+  --primary-deep: #1e293b;
+  --primary-ocean: #ff5722;
   
   /* Neutral Shades */
   --bg-light: #f8fafc;
   --bg-card: #ffffff;
-  --surface-glass: rgba(255, 255, 255, 0.85);
+  --surface-glass: rgba(255, 255, 255, 0.92);
   --border-light: #e2e8f0;
-  --border-subtle: rgba(255, 255, 255, 0.15);
+  --border-subtle: rgba(255, 87, 34, 0.15);
   
   --text-main: #0f172a;
   --text-muted: #64748b;
@@ -26,10 +29,10 @@
   --text-inverse: #ffffff;
   
   /* Shadows & Elevation */
-  --shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.04);
-  --shadow-md: 0 8px 24px rgba(10, 37, 64, 0.08);
-  --shadow-lg: 0 16px 36px rgba(10, 37, 64, 0.12);
-  --shadow-glow: 0 0 20px rgba(0, 180, 216, 0.25);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 20px rgba(255, 87, 34, 0.25);
   
   /* Border Radii */
   --radius-sm: 8px;
@@ -126,25 +129,27 @@ input, select, textarea {
 
 /* Buttons */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
-  color: var(--primary-dark);
+  background: linear-gradient(135deg, #ff5722 0%, #f4511e 100%);
+  color: #ffffff;
   font-weight: 700;
   padding: 0.85rem 1.75rem;
   border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 16px rgba(255, 183, 3, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35);
   transition: var(--transition-fast);
+  border: none;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 183, 3, 0.45);
+  background: linear-gradient(135deg, #f4511e 0%, #d84315 100%);
+  box-shadow: 0 10px 28px rgba(255, 87, 34, 0.45);
 }
 
 .btn-ocean {
-  background: linear-gradient(135deg, var(--primary-ocean) 0%, var(--accent-cyan) 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   color: #ffffff;
   font-weight: 600;
   padding: 0.85rem 1.75rem;
@@ -152,18 +157,19 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 16px rgba(0, 180, 216, 0.3);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
   transition: var(--transition-fast);
 }
 
 .btn-ocean:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 180, 216, 0.45);
+  background: #000000;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
 }
 
 .btn-outline {
-  border: 1.5px solid var(--primary-ocean);
-  color: var(--primary-ocean);
+  border: 1.5px solid #ff5722;
+  color: #ff5722;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-full);
@@ -171,11 +177,12 @@ input, select, textarea {
   align-items: center;
   gap: 0.5rem;
   transition: var(--transition-fast);
+  background: transparent;
 }
 
 .btn-outline:hover {
-  background: rgba(0, 180, 216, 0.08);
-  border-color: var(--accent-cyan);
+  background: rgba(255, 87, 34, 0.08);
+  border-color: #e64a19;
 }
 
 /* Glassmorphism Card Effect */

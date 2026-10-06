@@ -10,12 +10,12 @@
 
       <h1 class="hero-title" *ngIf="activeDestination">
         Explore {{ activeDestination.name }} Tour Packages
-        <span class="highlight-discount">Upto 40% OFF</span>
+        <span class="highlight-discount">Customized Trips</span>
       </h1>
 
       <h1 class="hero-title" *ngIf="!activeDestination">
         Discover Extraordinary Global Tour Packages
-        <span class="highlight-discount">Save Upto 40% Today</span>
+        <span class="highlight-discount">Bespoke Itineraries</span>
       </h1>
 
       <p class="hero-subtitle">
@@ -24,17 +24,17 @@
 
       <div class="hero-usps">
         <div class="usp-item"><i class="ri-shield-star-line"></i> Free Visa Assistance</div>
-        <div class="usp-item"><i class="ri-hotel-bed-line"></i> Private Island Resorts</div>
+        <div class="usp-item"><i class="ri-hotel-bed-line"></i> Handpicked Luxury Stays</div>
         <div class="usp-item"><i class="ri-flight-takeoff-line"></i> Direct Flight Options</div>
-        <div class="usp-item"><i class="ri-refund-line"></i> Flexible Cancellation</div>
+        <div class="usp-item"><i class="ri-whatsapp-line"></i> Instant WhatsApp Customization</div>
       </div>
     </div>
 
     <!-- Quick Search Widget Card -->
     <div class="hero-search-card glass-card-dark fade-in">
       <div class="card-header">
-        <h3><i class="ri-search-eye-line"></i> Find & Customize Your Trip</h3>
-        <span class="sub-label">Instant Quote & Expert Callback</span>
+        <h3><i class="ri-magic-line"></i> Plan Your Customized Trip</h3>
+        <span class="sub-label">Instant Itinerary & WhatsApp Quote</span>
       </div>
 
       <form (ngSubmit)="onSearchSubmit()" class="search-form">
@@ -77,10 +77,10 @@
 
         <div class="form-actions">
           <button type="submit" class="btn-primary btn-search">
-            <i class="ri-flashlight-fill"></i> Get Best Price Quote Now
+            <i class="ri-magic-line"></i> Get your trip customized
           </button>
           <button type="button" class="btn-outline-light" (click)="openInstantInquiry()">
-            <i class="ri-phone-line"></i> Talk to Specialist
+            <i class="ri-whatsapp-line"></i> WhatsApp Direct
           </button>
         </div>
       </form>
