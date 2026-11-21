@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { InquiryService } from '../../services/inquiry.service';
 import { TourPackage } from '../../models/package.model';
 import { LeadInquiry } from '../../models/inquiry.model';
+import { CONTACT } from '../../config/contact.config';
 
 @Component({
   selector: 'app-inquiry-modal',
@@ -87,11 +88,15 @@ export class InquiryModalComponent implements OnInit, OnDestroy {
       `📝 *Requirement Details:* ${this.formData.customRequests || 'Standard Customization'}`;
 
     const encodedMsg = encodeURIComponent(message);
-    this.whatsappUrl = `https://wa.me/918970034810?text=${encodedMsg}`;
-    this.mailtoUrl = `mailto:info@zigoholidays.com?subject=Trip Customization Request from ${encodeURIComponent(this.formData.fullName)}&body=${encodedMsg}`;
+    this.whatsappUrl = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodedMsg}`;
+    this.mailtoUrl = `mailto:${CONTACT.salesEmail},${CONTACT.infoEmail}?subject=Trip Customization Request from ${encodeURIComponent(this.formData.fullName)}&body=${encodedMsg}`;
 
-    this.inquiryService.submitInquiry(this.formData).then(() => {
+    this.inquiryService.submitInquiry(this.formData).then(ok => {
       this.isSubmitting = false;
+      if (!ok) {
+        alert(`We couldn't submit your request. Please try again or email ${CONTACT.salesEmail}.`);
+        return;
+      }
       this.isSubmitted = true;
 
       // Automatically open WhatsApp in new tab for immediate delivery
@@ -107,7 +112,7 @@ export class InquiryModalComponent implements OnInit, OnDestroy {
     if (this.whatsappUrl) {
       window.open(this.whatsappUrl, '_blank');
     } else {
-      window.open('https://wa.me/918970034810?text=Hi%20ZigoHolidays,%20I%20want%20to%20get%20my%20trip%20customized', '_blank');
+      window.open(`https://wa.me/${CONTACT.whatsappNumber}?text=Hi%20ZigoHolidays,%20I%20want%20to%20get%20my%20trip%20customized`, '_blank');
     }
   }
 
@@ -115,7 +120,7 @@ export class InquiryModalComponent implements OnInit, OnDestroy {
     if (this.mailtoUrl) {
       window.location.href = this.mailtoUrl;
     } else {
-      window.location.href = 'mailto:info@zigoholidays.com?subject=Trip%20Customization%20Request';
+      window.location.href = `mailto:${CONTACT.salesEmail},${CONTACT.infoEmail}?subject=Trip%20Customization%20Request`;
     }
   }
 }

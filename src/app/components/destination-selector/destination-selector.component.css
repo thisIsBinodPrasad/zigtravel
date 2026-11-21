@@ -1,6 +1,7 @@
 .dest-selector-section {
   padding: 3.5rem 0 2rem 0;
-  background: var(--bg-light);
+  scroll-margin-top: 110px;
+  background: var(--bg-white);
 }
 
 .text-center {
@@ -70,7 +71,7 @@
   background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-ocean) 100%);
   color: #ffffff;
   border-color: var(--primary-ocean);
-  box-shadow: 0 10px 28px rgba(0, 119, 182, 0.35);
+  box-shadow: 0 10px 24px rgba(11, 114, 133, 0.3);
 }
 
 .pill-icon {
@@ -96,14 +97,14 @@
 
 .pill-price {
   font-size: 0.82rem;
-  color: var(--accent-gold);
+  color: var(--primary-orange);
   font-weight: 700;
   margin-top: 0.25rem;
   white-space: nowrap;
 }
 
 .dest-pill.active .pill-price {
-  color: var(--accent-gold);
+  color: #ffd9cc;
 }
 
 /* Centered Top Badge - Positioned symmetrically above each card */

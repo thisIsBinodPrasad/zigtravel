@@ -1,6 +1,6 @@
 .hero-section {
   position: relative;
-  min-height: 85vh;
+  min-height: min(85vh, 680px);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(7, 25, 39, 0.75) 0%, rgba(10, 37, 64, 0.88) 100%);
+  background: linear-gradient(100deg, #ffffff 0%, rgba(255, 255, 255, 0.94) 45%, rgba(255, 255, 255, 0.55) 100%);
   z-index: 1;
 }
 
@@ -33,11 +33,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
+  background: #ffffff;
   padding: 0.4rem 1rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 1.25rem;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .badge-text {
-  color: #ffffff;
+  color: var(--text-main);
   font-size: 0.82rem;
   font-weight: 600;
 }
@@ -56,21 +56,20 @@
 .hero-title {
   font-size: 3.1rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--primary-dark);
   line-height: 1.15;
   margin-bottom: 1.25rem;
 }
 
 .highlight-discount {
   display: block;
-  color: var(--accent-gold);
+  color: var(--primary-ocean);
   font-size: 2.2rem;
-  text-shadow: 0 4px 20px rgba(255, 183, 3, 0.4);
 }
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: #cbd5e1;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 2rem;
   max-width: 620px;
@@ -86,9 +85,9 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(0, 180, 216, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(0, 180, 216, 0.3);
+  background: var(--bg-tint);
+  color: var(--text-main);
+  border: 1px solid var(--border-light);
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -102,11 +101,11 @@
 /* Search Card */
 .hero-search-card {
   padding: 2rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .card-header h3 {
-  color: #ffffff;
+  color: var(--primary-dark);
   font-size: 1.35rem;
   display: flex;
   align-items: center;
@@ -119,7 +118,7 @@
 }
 
 .sub-label {
-  color: var(--text-light);
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 1.5rem;
   display: block;
@@ -139,7 +138,7 @@
 }
 
 .form-group label {
-  color: #e2e8f0;
+  color: var(--text-main);
   font-size: 0.82rem;
   font-weight: 600;
   display: flex;
@@ -152,9 +151,9 @@
 }
 
 .form-input {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
@@ -163,13 +162,13 @@
 }
 
 .form-input:focus {
-  border-color: var(--accent-cyan);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--primary-ocean);
+  box-shadow: 0 0 0 3px rgba(11, 114, 133, 0.15);
 }
 
 .form-input option {
-  background: var(--primary-dark);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--text-main);
 }
 
 .form-actions {
@@ -187,8 +186,8 @@
 
 .btn-outline-light {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  border: 1.5px solid #25d366;
+  color: #128c4a;
   padding: 0.75rem;
   border-radius: var(--radius-full);
   display: flex;
@@ -201,7 +200,7 @@
 }
 
 .btn-outline-light:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(37, 211, 102, 0.1);
 }
 
 @media (max-width: 992px) {

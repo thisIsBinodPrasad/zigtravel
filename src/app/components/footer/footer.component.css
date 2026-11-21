@@ -1,6 +1,6 @@
 .site-footer {
-  background: var(--primary-dark);
-  color: #cbd5e1;
+  background: var(--bg-tint);
+  color: var(--text-muted);
   padding: 4rem 0 6rem 0;
   border-top: 1px solid var(--border-subtle);
 }
@@ -23,7 +23,7 @@
   font-size: 0.88rem;
   line-height: 1.6;
   margin-bottom: 1.25rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .social-links {
@@ -35,8 +35,9 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  color: var(--primary-ocean);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,7 +50,7 @@
 }
 
 .footer-col h4 {
-  color: #ffffff;
+  color: var(--primary-dark);
   font-size: 1.1rem;
   margin-bottom: 1.2rem;
 }
@@ -64,17 +65,17 @@
 
 .footer-col a {
   font-size: 0.88rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   transition: var(--transition-fast);
 }
 
 .footer-col a:hover {
-  color: var(--accent-cyan);
+  color: var(--primary-ocean);
 }
 
 .news-desc {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
@@ -88,9 +89,9 @@
   flex: 1;
   padding: 0.65rem 0.9rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  border: 1px solid var(--border-light);
+  background: #ffffff;
+  color: var(--text-main);
   font-size: 0.85rem;
   outline: none;
 }
@@ -116,7 +117,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .footer-bottom-links {

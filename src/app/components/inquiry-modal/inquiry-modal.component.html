@@ -8,7 +8,7 @@
         <div class="badge-tag-gold"><i class="ri-magic-line"></i> Tailored Itinerary Specialist</div>
         <h2>Get your trip customized</h2>
         <p *ngIf="selectedPackage">Selected Package: <strong>{{ selectedPackage.title }}</strong></p>
-        <p *ngIf="!selectedPackage">Share your travel requirements to receive a personalized day-wise itinerary & quote directly on WhatsApp and Mail.</p>
+        <p *ngIf="!selectedPackage">Share your travel requirements to receive a personalized day-wise itinerary & quote on WhatsApp and email.</p>
       </div>
 
       <form (ngSubmit)="onSubmit()" class="inquiry-form">
@@ -73,7 +73,7 @@
         </button>
 
         <p class="privacy-note">
-          <i class="ri-whatsapp-fill text-teal"></i> Details will be sent to our official WhatsApp (<strong>8970034810</strong>) & Mail (<strong>info@zigoholidays.com</strong>).
+          <i class="ri-whatsapp-fill text-teal"></i> Your request goes to our team at <strong>Sales@zigoholidays.com</strong> &amp; <strong>info@zigoholidays.com</strong>, with WhatsApp (<strong>8970034810</strong>) for instant replies.
         </p>
       </form>
     </div>
@@ -82,7 +82,7 @@
     <div class="modal-success text-center fade-in" *ngIf="isSubmitted">
       <div class="success-icon"><i class="ri-checkbox-circle-fill"></i></div>
       <h2>Trip Customization Request Sent!</h2>
-      <p>Thank you, <strong>{{ formData.fullName }}</strong>. Your trip details have been compiled and sent to our team via WhatsApp (<strong>+91 8970034810</strong>) and Mail.</p>
+      <p>Thank you, <strong>{{ formData.fullName }}</strong>. Your trip details have been compiled and received by our team at <strong>Sales@zigoholidays.com</strong> and <strong>info@zigoholidays.com</strong>. We'll get back to you shortly.</p>
 
       <div class="next-steps-card">
         <h4>Instant Delivery Options:</h4>

@@ -3,50 +3,52 @@
    ========================================================================== */
 
 :root {
-  /* Color Tokens - Thrillophilia Inspired Vibrant & Luxury Palette */
-  --primary-orange: #ff5722;
-  --primary-orange-hover: #e64a19;
-  --accent-amber: #ffa000;
-  --accent-gold: #ffb703;
-  --accent-teal: #00b894;
-  --accent-cyan: #00b4d8;
-  --accent-coral: #ff595e;
-  
-  --primary-dark: #0f172a;
-  --primary-deep: #1e293b;
-  --primary-ocean: #ff5722;
-  
+  /* Brand palette: fresh teal + warm coral on a clean white canvas */
+  --primary-orange: #ff6b3d;
+  --primary-orange-hover: #ec5628;
+  --accent-amber: #f59e0b;
+  --accent-gold: #d97706;
+  --accent-teal: #0f9d75;
+  --accent-cyan: #0b7285;
+  --accent-coral: #ff6b3d;
+
+  --primary-dark: #12303a;
+  --primary-deep: #0b4f5c;
+  --primary-ocean: #0b7285;
+
   /* Neutral Shades */
-  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --bg-light: #ffffff;
+  --bg-tint: #f4f9fa;
   --bg-card: #ffffff;
-  --surface-glass: rgba(255, 255, 255, 0.92);
-  --border-light: #e2e8f0;
-  --border-subtle: rgba(255, 87, 34, 0.15);
-  
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
+  --surface-glass: #ffffff;
+  --border-light: #e4edf0;
+  --border-subtle: #e4edf0;
+
+  --text-main: #12303a;
+  --text-muted: #5b7078;
+  --text-light: #8a9ea5;
   --text-inverse: #ffffff;
-  
-  /* Shadows & Elevation */
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 0 20px rgba(255, 87, 34, 0.25);
-  
+
+  /* Shadows & Elevation (soft, Material-card style) */
+  --shadow-sm: 0 1px 3px rgba(18, 48, 58, 0.06), 0 1px 2px rgba(18, 48, 58, 0.04);
+  --shadow-md: 0 4px 14px rgba(18, 48, 58, 0.08);
+  --shadow-lg: 0 12px 32px rgba(18, 48, 58, 0.12);
+  --shadow-glow: 0 6px 18px rgba(255, 107, 61, 0.28);
+
   /* Border Radii */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
   --radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  
+
   /* Typography */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Reset & Box Sizing */
@@ -70,8 +72,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-light);
+  background-color: var(--bg-white);
   color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
@@ -81,6 +84,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--primary-dark);
 }
@@ -129,7 +133,7 @@ input, select, textarea {
 
 /* Buttons */
 .btn-primary {
-  background: linear-gradient(135deg, #ff5722 0%, #f4511e 100%);
+  background: var(--primary-orange);
   color: #ffffff;
   font-weight: 700;
   padding: 0.85rem 1.75rem;
@@ -137,19 +141,19 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35);
+  box-shadow: var(--shadow-glow);
   transition: var(--transition-fast);
   border: none;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #f4511e 0%, #d84315 100%);
-  box-shadow: 0 10px 28px rgba(255, 87, 34, 0.45);
+  background: var(--primary-orange-hover);
+  box-shadow: 0 10px 24px rgba(255, 107, 61, 0.38);
 }
 
 .btn-ocean {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: var(--primary-ocean);
   color: #ffffff;
   font-weight: 600;
   padding: 0.85rem 1.75rem;
@@ -157,19 +161,19 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 4px 14px rgba(11, 114, 133, 0.28);
   transition: var(--transition-fast);
 }
 
 .btn-ocean:hover {
   transform: translateY(-2px);
-  background: #000000;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+  background: var(--primary-deep);
+  box-shadow: 0 8px 22px rgba(11, 114, 133, 0.38);
 }
 
 .btn-outline {
-  border: 1.5px solid #ff5722;
-  color: #ff5722;
+  border: 1.5px solid var(--primary-ocean);
+  color: var(--primary-ocean);
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-full);
@@ -181,27 +185,24 @@ input, select, textarea {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 87, 34, 0.08);
-  border-color: #e64a19;
+  background: rgba(11, 114, 133, 0.08);
+  border-color: var(--primary-deep);
 }
 
 /* Glassmorphism Card Effect */
 .glass-card {
-  background: var(--surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
 }
 
 .glass-card-dark {
-  background: rgba(10, 37, 64, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  color: #ffffff;
+  box-shadow: var(--shadow-lg);
+  color: var(--text-main);
 }
 
 /* Badges & Tags */
@@ -217,8 +218,8 @@ input, select, textarea {
 }
 
 .badge-tag {
-  background: rgba(2, 195, 154, 0.12);
-  color: #01896d;
+  background: rgba(15, 157, 117, 0.1);
+  color: #0a7a5a;
   font-weight: 600;
   font-size: 0.75rem;
   padding: 0.3rem 0.75rem;
@@ -254,9 +255,9 @@ input, select, textarea {
 }
 
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.5); }
-  70% { box-shadow: 0 0 0 12px rgba(255, 183, 3, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 61, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 107, 61, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 61, 0); }
 }
 
 .animate-pulse-glow {

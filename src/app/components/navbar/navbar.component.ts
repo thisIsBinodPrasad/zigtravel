@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { DestinationService } from '../../services/destination.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DestinationService, Region } from '../../services/destination.service';
 import { InquiryService } from '../../services/inquiry.service';
 
 @Component({
@@ -7,18 +8,16 @@ import { InquiryService } from '../../services/inquiry.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
-  selectedDestination = 'all';
-  destinations = [
-    { id: 'all', name: '🌍 All Destinations' },
-    { id: 'maldives', name: '🏝️ Maldives' },
-    { id: 'bali', name: '🌴 Bali' },
-    { id: 'dubai', name: '🏙️ Dubai' },
-    { id: 'thailand', name: '⛩️ Thailand' },
-    { id: 'europe', name: '🏰 Europe' },
-    { id: 'kashmir', name: '🏔️ Kashmir' },
-    { id: 'kerala', name: '🛶 Kerala' }
+  activeRegion: Region = 'all';
+  private activeDestinationId = 'all';
+  private subs = new Subscription();
+
+  tabs: { id: Region; label: string; icon: string }[] = [
+    { id: 'all', label: 'All Trips', icon: 'ri-compass-3-line' },
+    { id: 'International', label: 'International', icon: 'ri-earth-line' },
+    { id: 'Domestic', label: 'Domestic', icon: 'ri-map-pin-2-line' }
   ];
 
   constructor(
@@ -26,14 +25,24 @@ export class NavbarComponent {
     private inquiryService: InquiryService
   ) {}
 
-  onDestinationChange(destId: string) {
-    this.selectedDestination = destId;
-    this.destinationService.setActiveDestination(destId);
+  ngOnInit() {
+    this.subs.add(this.destinationService.activeRegion$.subscribe(r => (this.activeRegion = r)));
+    this.subs.add(this.destinationService.activeDestinationId$.subscribe(id => (this.activeDestinationId = id)));
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+
+  selectRegion(region: Region) {
+    this.destinationService.setRegion(region);
     this.isMobileMenuOpen = false;
+    document.getElementById('destinations-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   openGeneralInquiry() {
-    this.inquiryService.openModal(undefined, this.selectedDestination);
+    this.inquiryService.openModal(undefined, this.activeDestinationId);
+    this.isMobileMenuOpen = false;
   }
 
   toggleMobileMenu() {

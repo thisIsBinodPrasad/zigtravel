@@ -1,9 +1,9 @@
-<section class="dest-selector-section">
+<section class="dest-selector-section" id="destinations-section">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-tag"><i class="ri-earth-line"></i> TOP TRAVEL DESTINATIONS</span>
-      <h2>Choose Your Next Dream Getaway</h2>
-      <p>Browse handpicked holiday packages for premier island, beach, desert & mountain destinations worldwide</p>
+      <span class="section-tag"><i class="ri-earth-line"></i> {{ region === 'Domestic' ? 'DOMESTIC DESTINATIONS' : region === 'International' ? 'INTERNATIONAL DESTINATIONS' : 'TOP TRAVEL DESTINATIONS' }}</span>
+      <h2>{{ region === 'Domestic' ? 'Explore Incredible India' : region === 'International' ? 'Go Beyond Borders' : 'Choose Your Next Dream Getaway' }}</h2>
+      <p>{{ region === 'Domestic' ? 'Mountains, backwaters and beaches across India, with no visa needed' : region === 'International' ? 'Island, city and mountain holidays worldwide with free visa guidance' : 'Browse handpicked holiday packages for premier island, beach, desert & mountain destinations' }}</p>
     </div>
 
     <div class="dest-pills-wrapper">
@@ -14,7 +14,7 @@
         (click)="selectDestination('all')">
         <span class="pill-icon">🌍</span>
         <div class="dest-pill-info">
-          <span class="pill-name">All Destinations</span>
+          <span class="pill-name">All {{ region === 'all' ? 'Destinations' : region }}</span>
           <span class="pill-price">Explore Packages</span>
         </div>
       </button>

@@ -5,9 +5,9 @@
   width: 100%;
   z-index: 999;
   border-radius: 0;
-  border-top: 1px solid rgba(0, 180, 216, 0.3);
+  border-top: 1px solid var(--border-light);
   padding: 0.75rem 0;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -6px 24px rgba(18, 48, 58, 0.1);
 }
 
 .cta-flex {
@@ -41,17 +41,17 @@
 .cta-text {
   display: flex;
   flex-direction: column;
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 .cta-text strong {
   font-size: 0.95rem;
-  color: var(--accent-gold);
+  color: var(--primary-dark);
 }
 
 .cta-text span {
   font-size: 0.8rem;
-  color: #cbd5e1;
+  color: var(--text-muted);
 }
 
 .cta-right {

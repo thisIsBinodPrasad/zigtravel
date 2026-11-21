@@ -28,15 +28,17 @@ export class PackageGridComponent implements OnInit, OnDestroy {
       this.destinationService.activeCategory$,
       this.destinationService.activeDepartureCity$,
       this.destinationService.activeDuration$,
-      this.destinationService.sortBy$
-    ]).subscribe(([destId, query, category, city, duration, sort]) => {
+      this.destinationService.sortBy$,
+      this.destinationService.activeRegion$
+    ]).subscribe(([destId, query, category, city, duration, sort, region]) => {
       this.packages = this.destinationService.getFilteredPackages(
         destId,
         query,
         category,
         city,
         duration,
-        sort
+        sort,
+        region
       );
     });
   }
@@ -60,6 +62,7 @@ export class PackageGridComponent implements OnInit, OnDestroy {
   }
 
   resetFilters() {
+    this.destinationService.setRegion('all');
     this.destinationService.setActiveDestination('all');
     this.destinationService.setSearchQuery('');
     this.destinationService.setCategory('all');

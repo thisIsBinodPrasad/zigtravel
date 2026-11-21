@@ -1,58 +1,55 @@
 <header class="site-header">
-  <div class="top-announcement-bar">
-    <div class="container announcement-content">
-      <span>✨ <strong>CUSTOM HOLIDAYS:</strong> Tailored Domestic & International Itineraries with Expert Guidance</span>
-      <div class="announcement-right">
-        <span><i class="ri-shield-check-line"></i> Best Price Guarantee</span>
-        <span class="divider">|</span>
-        <span><i class="ri-customer-service-2-line"></i> 24/7 On-Trip Assistance</span>
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span class="top-bar-msg"><i class="ri-shield-check-line"></i> Best Price Guarantee &middot; 24/7 On-Trip Assistance</span>
+      <div class="top-bar-contact">
+        <a href="mailto:Sales@zigoholidays.com"><i class="ri-mail-line"></i> Sales@zigoholidays.com</a>
+        <a href="tel:+918970034810"><i class="ri-phone-line"></i> +91 8970034810</a>
       </div>
     </div>
   </div>
 
   <nav class="navbar">
     <div class="container nav-wrapper">
-      <!-- Brand Logo -->
       <a href="#" class="brand-logo">
         <div class="logo-icon"><i class="ri-compass-3-fill"></i></div>
         <div class="logo-text">
           <span class="brand-name">Zigo<span class="highlight">Holidays</span></span>
-          <span class="brand-sub">LUXURY GLOBAL HOLIDAYS</span>
+          <span class="brand-sub">DOMESTIC &amp; INTERNATIONAL HOLIDAYS</span>
         </div>
       </a>
 
-      <!-- Navigation Links -->
-      <div class="nav-links" [class.active]="isMobileMenuOpen">
-        <div class="dest-dropdown">
-          <label for="navDestSelect" class="dropdown-label"><i class="ri-map-pin-line"></i> Destination:</label>
-          <select id="navDestSelect" [ngModel]="selectedDestination" (ngModelChange)="onDestinationChange($event)" class="nav-select">
-            <option *ngFor="let dest of destinations" [value]="dest.id">{{ dest.name }}</option>
-          </select>
+      <div class="nav-menu" [class.active]="isMobileMenuOpen">
+        <!-- Domestic / International tabs -->
+        <div class="region-tabs" role="tablist" aria-label="Trip type">
+          <button
+            *ngFor="let t of tabs"
+            type="button"
+            role="tab"
+            class="region-tab"
+            [class.active]="activeRegion === t.id"
+            [attr.aria-selected]="activeRegion === t.id"
+            (click)="selectRegion(t.id)">
+            <i [class]="t.icon"></i> {{ t.label }}
+          </button>
         </div>
 
-        <a href="#packages-section" class="nav-link" (click)="isMobileMenuOpen = false">Tour Packages</a>
-        <a href="#travel-guide-section" class="nav-link" (click)="isMobileMenuOpen = false">Seasonal Guide</a>
-        <a href="#reviews-section" class="nav-link" (click)="isMobileMenuOpen = false">Reviews</a>
-        <a href="#faq-section" class="nav-link" (click)="isMobileMenuOpen = false">FAQs</a>
-
-        <div class="mobile-cta-wrapper">
-          <button class="btn-primary" (click)="openGeneralInquiry()"><i class="ri-magic-line"></i> Get your trip customized</button>
+        <div class="nav-links">
+          <a href="#packages-section" class="nav-link" (click)="isMobileMenuOpen = false">Packages</a>
+          <a href="#travel-guide-section" class="nav-link" (click)="isMobileMenuOpen = false">Seasonal Guide</a>
+          <a href="#reviews-section" class="nav-link" (click)="isMobileMenuOpen = false">Reviews</a>
+          <a href="#faq-section" class="nav-link" (click)="isMobileMenuOpen = false">FAQs</a>
         </div>
-      </div>
 
-      <!-- Action Hotline & CTA -->
-      <div class="nav-actions">
-        <a href="tel:+918970034810" class="phone-hotline">
-          <div class="hotline-icon"><i class="ri-phone-line"></i></div>
-          <div class="hotline-text">
-            <span class="label">Trip Helpline</span>
-            <span class="number">+91 8970034810</span>
-          </div>
-        </a>
-        <button class="btn-primary animate-pulse-glow" (click)="openGeneralInquiry()">
+        <button class="btn-primary mobile-cta" (click)="openGeneralInquiry()">
           <i class="ri-magic-line"></i> Get your trip customized
         </button>
+      </div>
 
+      <div class="nav-actions">
+        <button class="btn-primary desktop-cta" (click)="openGeneralInquiry()">
+          <i class="ri-magic-line"></i> Get your trip customized
+        </button>
         <button class="hamburger-btn" (click)="toggleMobileMenu()" aria-label="Toggle menu">
           <i [class]="isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-3-line'"></i>
         </button>

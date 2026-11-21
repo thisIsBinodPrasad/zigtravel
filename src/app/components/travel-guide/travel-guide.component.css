@@ -29,15 +29,15 @@
 }
 
 .season-tab-btn:hover {
-  border-color: #ff5722;
-  color: #ff5722;
+  border-color: var(--primary-orange);
+  color: var(--primary-orange);
   transform: translateY(-2px);
 }
 
 .season-tab-btn.active {
-  background: linear-gradient(135deg, #ff5722 0%, #f4511e 100%);
+  background: linear-gradient(135deg, var(--primary-orange) 0%, #f4511e 100%);
   color: #ffffff;
-  border-color: #ff5722;
+  border-color: var(--primary-orange);
   box-shadow: 0 6px 20px rgba(255, 87, 34, 0.3);
 }
 
@@ -63,16 +63,16 @@
 }
 
 .filter-pill.active {
-  background: #0f172a;
+  background: var(--primary-ocean);
   color: #ffffff;
-  border-color: #0f172a;
+  border-color: var(--primary-ocean);
 }
 
 /* Season Intro Box */
 .season-intro-box {
   padding: 1.5rem 2rem;
   background: #fffcf8;
-  border-left: 5px solid #ff5722;
+  border-left: 5px solid var(--primary-orange);
   margin-bottom: 2rem;
   border-radius: var(--radius-md);
 }
@@ -156,7 +156,7 @@
   bottom: 12px;
   right: 12px;
   background: rgba(15, 23, 42, 0.85);
-  color: #ffb703;
+  color: #ffd166;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.65rem;
@@ -234,7 +234,7 @@
   background: #f8fafc;
   padding: 0.75rem;
   border-radius: var(--radius-sm);
-  border-left: 3px solid #ff5722;
+  border-left: 3px solid var(--primary-orange);
 }
 
 .place-footer {

@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Destination } from '../models/destination.model';
 import { TourPackage } from '../models/package.model';
 
+export type Region = 'all' | 'International' | 'Domestic';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +12,9 @@ export class DestinationService {
 
   private activeDestinationIdSubject = new BehaviorSubject<string>('all');
   activeDestinationId$ = this.activeDestinationIdSubject.asObservable();
+
+  private activeRegionSubject = new BehaviorSubject<Region>('all');
+  activeRegion$ = this.activeRegionSubject.asObservable();
 
   private searchQuerySubject = new BehaviorSubject<string>('');
   searchQuery$ = this.searchQuerySubject.asObservable();
@@ -1001,6 +1006,16 @@ export class DestinationService {
     this.activeDestinationIdSubject.next(destinationId);
   }
 
+  setRegion(region: Region) {
+    this.activeRegionSubject.next(region);
+    // A destination from the other region would no longer be valid
+    const activeId = this.activeDestinationIdSubject.value;
+    const dest = this.getDestinationById(activeId);
+    if (dest && region !== 'all' && dest.category !== region) {
+      this.activeDestinationIdSubject.next('all');
+    }
+  }
+
   setSearchQuery(query: string) {
     this.searchQuerySubject.next(query);
   }
@@ -1027,9 +1042,15 @@ export class DestinationService {
     category: string,
     city: string,
     duration: string,
-    sort: string
+    sort: string,
+    region: Region = 'all'
   ): TourPackage[] {
     let result = [...this.packages];
+
+    if (region !== 'all') {
+      const ids = this.destinations.filter(d => d.category === region).map(d => d.id);
+      result = result.filter(p => ids.includes(p.destinationId));
+    }
 
     if (destId && destId !== 'all') {
       result = result.filter(p => p.destinationId === destId);
